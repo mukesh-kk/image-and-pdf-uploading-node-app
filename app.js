@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(methodoverride("_method"));
 
 //mongo connection  imageFileData
- const conn= mongoose.createConnection('mongodb+srv://mukeshmongo:mongo123@cluster0.h1zn0.mongodb.net/imageFileData',{useNewUrlParser:true,useUnifiedTopology:true},(err)=>{
+ const conn= mongoose.createConnection('mongodb+srv://<username:pasword>@cluster0.h1zn0.mongodb.net/imageFileData',{useNewUrlParser:true,useUnifiedTopology:true},(err)=>{
      if(err)console.log("EROOR_conneting to db");
      else console.log("WOW CONNECTED TO SERVER");
  });
