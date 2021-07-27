@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+
+    </style>
+    <title>Upload Files</title>
+</head>
+<body>
+<div class="container">
+<div class="row">
+    <div class="col-md-6 display-4 mx-auto">
+        <h2 class="text-center">UPLOAD YOUR FILES </h2>
+       
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="custom-file form-control mb-3">
+            <input type="file"name="file"id="file" class="custom-input-file">
+        <label for="file"class="custom-file-label form-control">CHOOSE FILE</label>
+        </div>
+        <input type="submit"value="submit"class="btn btn-primary btn-block">
+        </form>
+
+    </div>
+</div>
+
+</div>
+<h1 class="text-center text-primary"> Your Files Are:--</h1>
+<% if(files){ %>
+    <% files.forEach(function(file){ %>
+        <div class="d-flex flex-column align-items-center">
+           <% if(file.isImage){ %>
+            
+                <div  style="width:25%">
+                    
+                    <img src="images/<%=file.filename%>" class=""style=" width:70%;display:block;margin:auto;border:3px solid black;" alt="photo">
+                <form action="/files/<%=file._id%>"method="POST">
+                    <input type="submit"value="DELETE"class="btn btn-danger  btn-sm" style="display: block;margin:auto;margin-top:30px;margin-bottom: 20px;">
+                </form>
+                
+                </div>
+
+          <%  }else{%>
+            <div  class="card-body">
+                <p class="card-text text-center"><%=file.filename%></p>
+                <form action="/files/<%=file._id%>"method="POST">
+                    <input type="submit"value="DELETE"class="btn btn-danger btn-sm" style="display: block;margin:auto">
+                </form>
+            </div>
+                
+           <% }%>
+       
+   <% });%>
+
+<% }else{%>
+    <p>No file to show</p>
+</div>
+<%}%>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  
+</body>
+</html>
